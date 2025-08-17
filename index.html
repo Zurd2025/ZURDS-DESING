@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ZURDS DESING</title>
+
+  <style>
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #333; background: #fafafa; scroll-behavior: smooth; }
+
+
+
+    /* ==== NAVBAR ==== */
+
+    .navbar {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      background: #222;
+
+      padding: 12px 20px;
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 1000;
+
+    }
+
+    .navbar img {
+
+      height: 50px;
+
+    }
+
+    .navbar nav {
+
+      display: flex;
+
+      gap: 20px;
+
+    }
+
+    .navbar nav a {
+
+      color: white;
+
+      text-decoration: none;
+
+      font-weight: bold;
+
+      position: relative;
+
+      transition: color 0.3s;
+
+    }
+
+    .navbar nav a::after {
+
+      content: "";
+
+      display: block;
+
+      width: 0;
+
+      height: 2px;
+
+      background: #ffeb00;
+
+      transition: width 0.3s;
+
+      margin: auto;
+
+    }
+
+    .navbar nav a:hover {
+
+      color: #ffeb00;
+
+    }
+
+    .navbar nav a:hover::after {
+
+      width: 100%;
+
+    }
+
+
+
+    /* ==== BOTÓN HAMBURGUESA ==== */
+
+    .hamburger {
+
+      display: none;
+
+      flex-direction: column;
+
+      cursor: pointer;
+
+      gap: 5px;
+
+    }
+
+    .hamburger span {
+
+      width: 25px;
+
+      height: 3px;
+
+      background: white;
+
+      border-radius: 3px;
+
+      transition: 0.3s;
+
+    }
+
+
+
+    /* ==== NAV RESPONSIVE ==== */
+
+    @media (max-width: 768px) {
+
+      .navbar nav {
+
+        position: absolute;
+
+        top: 65px;
+
+        left: 0;
+
+        width: 100%;
+
+        background: #222;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        max-height: 0;
+
+        overflow: hidden;
+
+        transition: max-height 0.4s ease;
+
+      }
+
+      .navbar nav.show {
+
+        max-height: 300px;
+
+      }
+
+      .hamburger {
+
+        display: flex;
+
+      }
+
+    }
+
+
+
+    /* ==== HEADER ==== */
+
+    header {
+
+      background: linear-gradient(90deg, #0057ff, #ff00aa, #ffeb00);
+
+      color: white;
+
+      padding: 100px 20px;
+
+      text-align: center;
+
+    }
+
+    header img {
+
+      width: 200px;
+
+      margin-bottom: 20px;
+
+    }
+
+    header h1 {
+
+      font-size: 3em;
+
+      letter-spacing: 2px;
+
+      margin-bottom: 10px;
+
+      animation: fadeDown 1.5s ease-out;
+
+    }
+
+    header p {
+
+      font-size: 1.2em;
+
+      animation: fadeUp 2s ease-out;
+
+    }
+
+
+
+    @keyframes fadeDown {
+
+      from {opacity: 0; transform: translateY(-30px);}
+
+      to {opacity: 1; transform: translateY(0);}
+
+    }
+
+    @keyframes fadeUp {
+
+      from {opacity: 0; transform: translateY(30px);}
+
+      to {opacity: 1; transform: translateY(0);}
+
+    }
+
+
+
+    /* ==== SECCIONES ==== */
+
+    section {
+
+      padding: 80px 20px;
+
+      max-width: 1100px;
+
+      margin: auto;
+
+      text-align: center;
+
+      opacity: 0;
+
+      transform: translateY(50px);
+
+      transition: all 0.8s ease-out;
+
+    }
+
+    section.show {
+
+      opacity: 1;
+
+      transform: translateY(0);
+
+    }
+
+    h2 { font-size: 2em; margin-bottom: 20px; color: #0057ff; }
+
+
+
+    /* ==== SERVICIOS ==== */
+
+    .services {
+
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+      gap: 25px;
+
+    }
+
+    .card {
+
+      background: white;
+
+      padding: 25px;
+
+      border-radius: 12px;
+
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    }
+
+    .card:hover {
+
+      transform: translateY(-10px);
+
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+
+    }
+
+    .card h3 { color: #ff00aa; margin-bottom: 10px; }
+
+
+
+    /* ==== PORTAFOLIO ==== */
+
+    .portfolio {
+
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+      gap: 20px;
+
+    }
+
+    .portfolio .item {
+
+      background: #eee;
+
+      padding: 60px 20px;
+
+      border-radius: 10px;
+
+      font-weight: bold;
+
+      transition: transform 0.4s ease;
+
+      cursor: pointer;
+
+    }
+
+    .portfolio .item:hover {
+
+      transform: scale(1.05) rotate(-1deg);
+
+      background: linear-gradient(135deg, #0057ff, #ff00aa, #ffeb00);
+
+      color: white;
+
+    }
+
+
+
+    /* ==== FORMULARIO ==== */
+
+    form {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 15px;
+
+      max-width: 500px;
+
+      margin: auto;
+
+    }
+
+    input, textarea, button {
+
+      padding: 12px;
+
+      border: 1px solid #ccc;
+
+      border-radius: 8px;
+
+      font-size: 1em;
+
+    }
+
+    button {
+
+      background: #0057ff;
+
+      color: white;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+      transition: background 0.3s ease;
+
+    }
+
+    button:hover { background: #ff00aa; }
+
+
+
+    /* ==== FOOTER ==== */
+
+    footer {
+
+      background: #222;
+
+      color: white;
+
+      text-align: center;
+
+      padding: 20px;
+
+      margin-top: 50px;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+
+
+  <!-- NAVBAR CON LOGO Y MENÚ HAMBURGUESA -->
+
+  <div class="navbar">
+
+    <img src="logo.png" alt="ZURDS DESING">
+
+    <nav>
+
+      <a href="#inicio">Inicio</a>
+
+      <a href="#servicios">Servicios</a>
+
+      <a href="#portafolio">Portafolio</a>
+
+      <a href="#contacto">Contacto</a>
+
+    </nav>
+
+    <div class="hamburger" id="hamburger">
+
+      <span></span>
+
+      <span></span>
+
+      <span></span>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- HERO PRINCIPAL CON LOGO CENTRAL -->
+
+  <header>
+
+    <img src="logo.png" alt="ZURDS DESING">
+
+    <h1>ZURDS DESING</h1>
+
+    <p>Creatividad en cada diseño</p>
+
+  </header>
+
+
+
+  <!-- SECCIONES -->
+
+  <section id="inicio">
+
+    <h2>Bienvenido a ZURDS DESING</h2>
+
+    <p>Somos un estudio de diseño gráfico especializado en crear marcas únicas, modernas y memorables.  
+
+    Transformamos tus ideas en imágenes que impactan.</p>
+
+  </section>
+
+
+
+  <section id="servicios">
+
+    <h2>Nuestros Servicios</h2>
+
+    <div class="services">
+
+      <div class="card">
+
+        <h3>Identidad Corporativa</h3>
+
+        <p>Logotipos, branding y manuales de marca que representan tu esencia.</p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Diseño Editorial</h3>
+
+        <p>Revistas, catálogos y folletos con un estilo profesional.</p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>Publicidad Creativa</h3>
+
+        <p>Campañas gráficas y anuncios que generan impacto.</p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <section id="portafolio">
+
+    <h2>Portafolio</h2>
+
+    <div class="portfolio">
+
+      <div class="item">🎨 Proyecto 1</div>
+
+      <div class="item">🎨 Proyecto 2</div>
+
+      <div class="item">🎨 Proyecto 3</div>
+
+      <div class="item">🎨 Proyecto 4</div>
+
+    </div>
+
+  </section>
+
+
+
+  <section id="contacto">
+
+    <h2>Contacto</h2>
+
+    <form>
+
+      <input type="text" placeholder="Tu nombre" required>
+
+      <input type="email" placeholder="Tu correo" required>
+
+      <textarea rows="5" placeholder="Escribe tu mensaje"></textarea>
+
+      <button type="submit">Enviar</button>
+
+    </form>
+
+  </section>
+
+
+
+  <footer>
+
+    <p>&copy; 2025 ZURDS DESING - Todos los derechos reservados</p>
+
+  </footer>
+
+
+
+  <!-- Scripts -->
+
+  <script>
+
+    // Animación al hacer scroll
+
+    const sections = document.querySelectorAll("section");
+
+    const showOnScroll = () => {
+
+      const triggerBottom = window.innerHeight * 0.85;
+
+      sections.forEach(sec => {
+
+        const rect = sec.getBoundingClientRect();
+
+        if(rect.top < triggerBottom){
+
+          sec.classList.add("show");
+
+        }
+
+      });
+
+    };
+
+    window.addEventListener("scroll", showOnScroll);
+
+    showOnScroll();
+
+
+
+    // Menú hamburguesa
+
+    const hamburger = document.getElementById("hamburger");
+
+    const nav = document.querySelector(".navbar nav");
+
